@@ -10,6 +10,11 @@ const Product = props => {
   const [selectedColor, setSelectedColor] = useState(colors[0]);
   const [selectedSize, setSelectedSize] = useState(sizes[0]);
 
+  //Create variable to store selected size object which include additionalPrice
+  const selectedSizeObj = sizes.find((size) => size.name === selectedSize)
+  //Calculate the total Price by adding basePrice + current additionalPrice
+  const totalPrice = basePrice + (selectedSizeObj ? selectedSizeObj.additionalPrice : 0);
+
   return (
     <article className={styles.product}>
       <div className={styles.imageContainer}>
@@ -21,7 +26,7 @@ const Product = props => {
       <div>
         <header>
           <h2 className={styles.name}>{title}</h2>
-          <span className={styles.price}>Price: {basePrice}$</span>
+          <span className={styles.price}>Price: {totalPrice}$</span>
         </header>
         <form>
           <div className={styles.sizes}>
