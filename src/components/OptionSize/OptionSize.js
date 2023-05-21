@@ -11,8 +11,8 @@ const OptionSize = ({ sizes, selectedSize, setSelectedSize }) => {
           <li key={size.name}>
             <button
               type="button"
-              className={clsx(selectedSize === size.name && styles.active)}
-              onClick={() => setSelectedSize(size.name)}
+              className={clsx(selectedSize === size && styles.active)}
+              onClick={() => setSelectedSize(size)}
             >
               {size.name}
             </button>
@@ -30,7 +30,10 @@ OptionSize.propTypes = {
       additionalPrice: PropTypes.number.isRequired,
     })
   ).isRequired,
-  selectedSize: PropTypes.string.isRequired,
+  selectedSize: PropTypes.shape({
+    name: PropTypes.string.isRequired,
+    additionalPrice: PropTypes.number.isRequired,
+  }).isRequired,
   setSelectedSize: PropTypes.func.isRequired,
 };
 

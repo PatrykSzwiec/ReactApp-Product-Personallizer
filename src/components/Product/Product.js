@@ -12,7 +12,7 @@ const Product = props => {
   const [selectedSize, setSelectedSize] = useState(sizes[0]);
 
   //Create variable to store selected size object which include additionalPrice
-  const selectedSizeObj = sizes.find((size) => size.name === selectedSize)
+  const selectedSizeObj = sizes.find((size) => size === selectedSize)
   //Calculate the total Price by adding basePrice + current additionalPrice
   const totalPrice = basePrice + (selectedSizeObj ? selectedSizeObj.additionalPrice : 0);
 
@@ -60,6 +60,5 @@ Product.propTypes = {
     })
   ).isRequired,
 };
-
 
 export default Product;
