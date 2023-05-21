@@ -15,6 +15,17 @@ const Product = props => {
   //Calculate the total Price by adding basePrice + current additionalPrice
   const totalPrice = basePrice + (selectedSizeObj ? selectedSizeObj.additionalPrice : 0);
 
+  // function to display product summary at console.log
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    console.log('Summary');
+    console.log('=========');
+    console.log('Name:', title);
+    console.log('TotalPrice:', totalPrice);
+    console.log('Size:', selectedSizeObj.name);
+    console.log('Color:', selectedColor);
+  };
+
   return (
     <article className={styles.product}>
       <div className={styles.imageContainer}>
@@ -63,7 +74,7 @@ const Product = props => {
               ))}
             </ul>
           </div>
-          <Button className={styles.button}>
+          <Button className={styles.button} onClick={handleSubmit}>
             <span className="fa fa-shopping-cart" />
           </Button>
         </form>
