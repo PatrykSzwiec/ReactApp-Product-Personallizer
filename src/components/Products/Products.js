@@ -10,7 +10,7 @@ const Products = () => {
       {/* Use .map at products array to iterate over each product and render a component for each item */}
         {products.map((product) => (
           <Product
-            {...product}
+            {...product} key={product.id}
             /* Using ...product instead of
               key={product.id}
               name={product.name}
