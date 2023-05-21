@@ -30,7 +30,7 @@ OptionSize.propTypes = {
       additionalPrice: PropTypes.number.isRequired,
     })
   ).isRequired,
-  selectedSize: PropTypes.string.isRequired,
+  selectedSize: PropTypes.object.isRequired,
   setSelectedSize: PropTypes.func.isRequired,
 };
 
