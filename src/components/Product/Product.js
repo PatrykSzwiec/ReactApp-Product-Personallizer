@@ -1,5 +1,5 @@
 import styles from './Product.module.scss';
-import { useState } from 'react';
+import { useState, useMemo } from 'react';
 import PropTypes from 'prop-types';
 
 import ProductImage from '../ProductImage/ProductImage';
@@ -11,19 +11,20 @@ const Product = props => {
   const [selectedColor, setSelectedColor] = useState(colors[0]);
   const [selectedSize, setSelectedSize] = useState(sizes[0]);
 
-  //Create variable to store selected size object which include additionalPrice
-  const selectedSizeObj = sizes.find((size) => size === selectedSize)
-  //Calculate the total Price by adding basePrice + current additionalPrice
-  const totalPrice = basePrice + (selectedSizeObj ? selectedSizeObj.additionalPrice : 0);
+  const totalPrice = useMemo(() => {
+    const selectedSizeObj = sizes.find((size) => size === selectedSize);
+    return basePrice + (selectedSizeObj ? selectedSizeObj.additionalPrice : 0);
+  }, [basePrice, sizes, selectedSize]);
 
   // function to display product summary at console.log
   const handleSubmit = (event) => {
     event.preventDefault();
+    const selectedSizeObj = sizes.find((size) => size === selectedSize);
     console.log('Summary');
     console.log('=========');
     console.log('Name:', title);
     console.log('TotalPrice:', totalPrice);
-    console.log('Size:', selectedSizeObj.name);
+    console.log('Size:',  selectedSizeObj ? selectedSizeObj.name : '');
     console.log('Color:', selectedColor);
   };
 
